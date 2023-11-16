@@ -7,19 +7,19 @@ let xSpeed = 0, ySpeed = 0;
 let started = false;
 let gameOver = false;
 let showStartScreen = true; // State for showing the start screen
-let scl = 20; // Scale for snake and food size
+let scl = 30; // Scale for snake and food size
 
 function preload() {
   snakeImg = loadImage('snake copy.jpg'); // Replace with your image path
   endImg = loadImage('end copy.jpg');     // Replace with your image path
-  classifier = ml5.imageClassifier(  'https://teachablemachine.withgoogle.com/models/IjjoFVG8X/model.json');
+  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/IjjoFVG8X/model.json');
 }
 
 function setup() {
-  createCanvas(640, 420); // Set the canvas size to 640x360
-  frameRate(5);
+  createCanvas(1280, 840); // Set the canvas size to 640x360
+  frameRate(7);
   capture = createCapture(VIDEO);
-  capture.size(640, 420); // Set the capture size to match the canvas size
+  capture.size(1280, 840); // Set the capture size to match the canvas size
   capture.hide(); // Hide the video element, and just show the canvas
   snake.push(createVector(floor(width / 2), floor(height / 2)));
   pickLocation();
@@ -29,10 +29,10 @@ function draw() {
   background(0); // Set the background to black
 
   if (showStartScreen) {
-    image(snakeImg, (width - 640) / 2, (height - 420) / 2, 640, 420); // Center the image on the canvas
+    image(snakeImg, (width - 1280) / 2, (height - 840) / 2, 1280, 840); // Center the image on the canvas
     return;
   } else if (gameOver) {
-    image(endImg, (width - 640) / 2, (height - 420) / 2, 640, 420); // Center the image on the canvas
+    image(endImg, (width - 1280) / 2, (height - 840) / 2, 1280, 840); // Center the image on the canvas
     return;
   }
 
@@ -112,17 +112,25 @@ function updateSnake() {
   head.x += xSpeed;
   head.y += ySpeed;
 
+  // Align the head's position to the grid
+  head.x = floor(head.x / scl) * scl;
+  head.y = floor(head.y / scl) * scl;
+
+  // Check for game over conditions
   if (head.x < 0 || head.x >= width || head.y < 0 || head.y >= height) {
     gameOver = true;
-    started = false; // Set started to false when the game is over
+    started = false;
+    return;
   }
 
- snake.unshift(head);
-  if (snake[0].x === food.x && snake[0].y === food.y) {
-    pickLocation();
+  // Check if snake eats the food
+  if (head.x === food.x && head.y === food.y) {
+    pickLocation(); // Reposition the food
   } else {
-    snake.pop();
+    snake.pop(); // Remove the last segment if food not eaten
   }
+
+  snake.unshift(head); // Add the new head position
 }
 
 function displaySnake() {
