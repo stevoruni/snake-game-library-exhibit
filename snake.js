@@ -1,4 +1,4 @@
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/InISwTZvg/';
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/IjjoFVG8X/';
 let classifier;
 let label = "";
 let snakeImg, endImg, food, capture;
@@ -12,12 +12,12 @@ let scl = 30; // Scale for snake and food size
 function preload() {
   snakeImg = loadImage('snake copy.jpg'); // Replace with your image path
   endImg = loadImage('end copy.jpg');     // Replace with your image path
-  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/InISwTZvg/model.json');
+  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/IjjoFVG8X/model.json');
 }
 
 function setup() {
   createCanvas(1280, 840); // Set the canvas size to 640x360
-  frameRate(7);
+  frameRate(6);
   capture = createCapture(VIDEO);
   capture.size(1280, 840); // Set the capture size to match the canvas size
   capture.hide(); // Hide the video element, and just show the canvas
