@@ -17,7 +17,7 @@ function preload() {
 
 function setup() {
   createCanvas(1280, 840); // Set the canvas size to 640x360
-  frameRate( 4);
+  frameRate(3);
   capture = createCapture(VIDEO);
   capture.size(1280, 840); // Set the capture size to match the canvas size
   capture.hide(); // Hide the video element, and just show the canvas
