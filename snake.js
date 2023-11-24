@@ -1,4 +1,4 @@
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/OzsMSpNPN/';
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/xcW0AhViD/';
 let classifier;
 let label = "";
 let snakeImg, endImg, food, capture;
@@ -12,7 +12,7 @@ let scl = 30; // Scale for snake and food size
 function preload() {
   snakeImg = loadImage('snake copy.jpg'); // Replace with your image path
   endImg = loadImage('end copy.jpg');     // Replace with your image path
-  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/OzsMSpNPN/model.json');
+  classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/xcW0AhViD/model.json');
 }
 
 function setup() {
