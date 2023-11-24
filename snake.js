@@ -134,7 +134,7 @@ function updateSnake() {
 }
 
 function displaySnake() {
-  fill(0);
+  fill(0, 255, 0);
   for (let i = 0; i < snake.length; i++) {
     rect(snake[i].x, snake[i].y, scl, scl);
   }
